@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D. Moss — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #0f172a;
+      --navy2:   #1e293b;
+      --slate:   #334155;
+      --mid:     #64748b;
+      --light:   #94a3b8;
+      --border:  #e2e8f0;
+      --bg:      #f8fafc;
+      --white:   #ffffff;
+      --indigo:  #4f46e5;
+      --indigo2: #6366f1;
+      --indigo-l:#eef2ff;
+      --green:   #059669;
+      --green-l: #ecfdf5;
+      --amber:   #d97706;
+      --amber-l: #fffbeb;
+      --radius:  12px;
+      --shadow:  0 1px 3px rgba(0,0,0,.06), 0 4px 16px rgba(0,0,0,.07);
+      --shadow-hover: 0 4px 6px rgba(0,0,0,.06), 0 12px 32px rgba(0,0,0,.12);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--navy);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    /* ── Nav ─────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo { font-weight: 700; font-size: 16px; color: var(--navy); text-decoration: none; }
+    .nav-logo span { color: var(--indigo); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: var(--mid); text-decoration: none; font-size: 14px; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-menu {
+      display: none; position: absolute; top: 100%; right: 0;
+      padding-top: 10px;
+      background: transparent; z-index: 200;
+    }
+    .nav-dropdown-menu-inner {
+      background: white; border: 1px solid var(--border); border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.1); min-width: 200px;
+      padding: 6px;
+    }
+    .nav-dropdown-menu a {
+      display: block; padding: 9px 14px; border-radius: 7px;
+      font-size: 13px; font-weight: 500; color: var(--slate);
+      text-decoration: none; transition: background .15s, color .15s;
+      white-space: nowrap;
+    }
+    .nav-dropdown-menu a:hover { background: var(--indigo-l); color: var(--indigo); }
+
+    /* ── Hero ────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #1e2a4a 100%);
+      color: white;
+      padding: 80px 32px;
+    }
+    .hero-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; gap: 48px;
+    }
+    .hero-photo-wrap { flex-shrink: 0; }
+    .hero-photo {
+      width: 260px; height: 340px;
+      object-fit: cover; object-position: center top;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.12);
+      display: block;
+    }
+    .hero-content { flex: 1; }
+    .hero-name-line {
+      font-size: 13px; color: #818cf8; font-weight: 600;
+      letter-spacing: .04em; margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 22px;
+      letter-spacing: -.02em;
+    }
+    .hero h1 span { color: #818cf8; }
+    .hero p {
+      font-size: 17px;
+      color: #94a3b8;
+      max-width: 620px;
+      margin: 0 0 28px;
+      line-height: 1.7;
+      font-weight: 400;
+    }
+    .hero-tags { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 10px; margin-bottom: 36px; }
+    .hero-tag {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+      color: #cbd5e1;
+      font-size: 13px; font-weight: 500;
+      padding: 6px 16px; border-radius: 20px;
+    }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--indigo); color: white;
+      font-weight: 600; font-size: 14px;
+      padding: 12px 28px; border-radius: 8px;
+      text-decoration: none;
+      transition: background .2s, transform .15s;
+      box-shadow: 0 4px 14px rgba(79,70,229,.4);
+    }
+    .hero-cta:hover { background: var(--indigo2); transform: translateY(-1px); }
+
+    /* ── Section wrapper ─────────────────────────────── */
+    .section { padding: 80px 32px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 12px; font-weight: 600; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--indigo);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 700; letter-spacing: -.02em;
+      color: var(--navy); margin-bottom: 8px;
+    }
+    .section-sub { color: var(--mid); font-size: 15px; max-width: 560px; }
+
+    /* ── Stats strip ─────────────────────────────────── */
+    .stats { background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .stats-inner {
+      max-width: 1100px; margin: 0 auto; padding: 40px 32px;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; text-align: center;
+    }
+    .stat { padding: 0 24px; }
+    .stat + .stat { border-left: 1px solid var(--border); }
+    .stat-value { font-size: 32px; font-weight: 700; color: var(--indigo); letter-spacing: -.02em; }
+    .stat-label { font-size: 13px; color: var(--mid); margin-top: 4px; font-weight: 500; }
+
+    /* ── Project cards ───────────────────────────────── */
+    .project-tabs { display: inline-flex; gap: 12px; margin-top: 36px; margin-bottom: 36px; }
+    .project-tab {
+      padding: 11px 28px; border-radius: 50px;
+      font-size: 14px; font-weight: 600; cursor: pointer;
+      border: 2px solid var(--border);
+      background: var(--white); color: var(--slate);
+      transition: all .2s;
+    }
+    .project-tab[data-tab="ai"].active { background: #4f46e5; color: #fff; border-color: #4f46e5; }
+    .project-tab[data-tab="erp"].active { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .project-tab[data-tab="ai"]:hover:not(.active) { border-color: #4f46e5; color: #4f46e5; }
+    .project-tab[data-tab="erp"]:hover:not(.active) { border-color: var(--navy); color: var(--navy); }
+    .projects-grid { display: flex; flex-direction: column; gap: 48px; }
+
+    .project-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: box-shadow .25s, transform .25s;
+    }
+    .project-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+
+    .project-card-header {
+      padding: 28px 36px;
+      background: linear-gradient(135deg, var(--navy) 0%, #1e2a4a 100%);
+      border-bottom: 1px solid #2e3a5a;
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 20px;
+      cursor: pointer; user-select: none;
+    }
+    .project-meta { flex: 1; }
+    .project-number {
+      font-size: 11px; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: #818cf8; margin-bottom: 8px;
+    }
+    .project-title { font-size: 22px; font-weight: 700; color: #ffffff; margin-bottom: 6px; letter-spacing: -.01em; }
+    .project-subtitle { font-size: 14px; color: #94a3b8; font-weight: 400; margin-bottom: 20px; }
+
+    .project-persona { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #94a3b8; margin-bottom: 10px; }
+    .project-card-headline { font-size: clamp(20px, 2.2vw, 30px); font-weight: 700; color: #ffffff; line-height: 1.25; margin-bottom: 12px; letter-spacing: -.02em; }
+    .project-card-headline span { color: #818cf8; }
+    .project-card-lede { font-size: 14px; color: #94a3b8; line-height: 1.7; margin-bottom: 20px; max-width: 700px; }
+    .project-screenshot { background: #f1f5f9; border: 2px dashed #cbd5e1; border-radius: 10px; min-height: 200px; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-size: 13px; font-weight: 500; margin-bottom: 24px; text-align: center; padding: 20px; }
+    .project-screenshot img { width: 100%; height: auto; border-radius: 8px; display: block; }
+
+    /* ── Slideshow ── */
+    .proj-slideshow { position: relative; border-radius: 10px; overflow: hidden; margin-bottom: 24px; background: #0f172a; cursor: zoom-in; aspect-ratio: 16/9; }
+    .proj-slideshow .slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 10px; transition: opacity 0.5s; opacity: 0; }
+    .proj-slideshow .slide.active { opacity: 1; }
+    .slideshow-dots { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 7px; z-index: 10; background: rgba(0,0,0,.55); border: 1px solid rgba(255,255,255,.25); border-radius: 50px; padding: 5px 10px; }
+    .slideshow-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.35); cursor: pointer; transition: background .2s; border: none; padding: 0; }
+    .slideshow-dot.active { background: #ffffff; }
+    .slideshow-expand-btn { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,.55); border: 1px solid rgba(255,255,255,.25); color: #fff; font-size: 11px; font-weight: 600; padding: 5px 11px; border-radius: 6px; cursor: pointer; z-index: 10; display: flex; align-items: center; gap: 5px; transition: background .2s; letter-spacing: .02em; }
+    .slideshow-expand-btn:hover { background: rgba(0,0,0,.8); border-color: rgba(255,255,255,.5); }
+    /* ── In-card expanded overlay ── */
+    .project-card-content { position: relative; }
+    .card-img-overlay { display: none; position: absolute; inset: 0; background: #0f172a; z-index: 50; align-items: center; justify-content: center; border-radius: 0 0 16px 16px; }
+    .card-img-overlay img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; cursor: pointer; }
+    .card-img-close { position: absolute; top: 24px; right: 16px; background: rgba(0,0,0,.55); border: 1px solid rgba(255,255,255,.25); color: #fff; font-size: 16px; font-weight: 700; width: 42px; height: 42px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 53; transition: background .2s, transform .15s; }
+    .card-img-close:hover { background: rgba(0,0,0,.8); border-color: rgba(255,255,255,.5); transform: scale(1.1); }
+    .lightbox-dots { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 52; background: rgba(0,0,0,.55); border: 1px solid rgba(255,255,255,.25); border-radius: 50px; padding: 5px 10px; }
+    .lightbox-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.35); cursor: pointer; transition: background .2s; }
+    .lightbox-dot.active { background: #ffffff; }
+    .lightbox-caption { position: absolute; bottom: 38px; left: 50%; transform: translateX(-50%); white-space: nowrap; background: rgba(0,0,0,.55); border: 1px solid rgba(255,255,255,.25); color: #fff; font-size: 13px; font-weight: 600; letter-spacing: .02em; padding: 5px 14px; border-radius: 6px; z-index: 52; pointer-events: none; }
+
+    .header-metrics { display: flex; flex-wrap: wrap; gap: 10px; }
+    .header-metric {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 10px;
+      padding: 10px 16px;
+      display: flex; flex-direction: column; gap: 3px;
+      min-width: 100px;
+    }
+    .header-metric-value {
+      font-size: 20px; font-weight: 700; color: #ffffff; letter-spacing: -.02em; line-height: 1;
+    }
+    .header-metric-label {
+      font-size: 11px; color: #94a3b8; font-weight: 500; line-height: 1.3;
+    }
+
+    .toggle-btn {
+      display: flex; align-items: center; gap: 8px; flex-shrink: 0;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 20px;
+      padding: 8px 16px;
+      color: #ffffff;
+      font-size: 13px; font-weight: 500;
+      white-space: nowrap;
+      transition: background .2s;
+      align-self: flex-start;
+    }
+    .project-card-header:hover .toggle-btn { background: rgba(255,255,255,.18); }
+    .toggle-icon {
+      font-size: 16px; line-height: 1;
+      transition: transform .25s;
+      display: inline-block;
+    }
+    .project-card.collapsed .toggle-icon { transform: rotate(-90deg); }
+
+    .project-card-content {
+      transition: opacity .3s;
+      opacity: 1;
+    }
+    .project-card.collapsed .project-card-content {
+      display: none;
+      opacity: 0;
+    }
+
+    .project-card-body { padding: 32px 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+
+    .block-label {
+      font-size: 11px; font-weight: 700; letter-spacing: .07em;
+      text-transform: uppercase; color: var(--light); margin-bottom: 10px;
+    }
+    .block-text { font-size: 14px; color: var(--slate); line-height: 1.7; }
+
+    .features-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .features-list li {
+      font-size: 14px; color: var(--slate); line-height: 1.5;
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .features-list li::before {
+      content: '';
+      display: block; flex-shrink: 0;
+      width: 18px; height: 18px; margin-top: 1px;
+      background: var(--indigo-l);
+      border-radius: 50%;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%234f46e5'%3E%3Cpath d='M6.5 11.5L3 8l1-1 2.5 2.5 5-5 1 1z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 14px;
+    }
+
+    .project-card-footer {
+      padding: 20px 36px;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    }
+    .tech-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tech-tag {
+      font-size: 12px; font-weight: 500;
+      background: var(--white); border: 1px solid var(--border);
+      color: var(--slate); padding: 4px 10px; border-radius: 6px;
+    }
+    .impact-pill {
+      font-size: 12px; font-weight: 600;
+      background: var(--indigo-l); color: var(--indigo);
+      border: 1px solid #c7d2fe;
+      padding: 5px 14px; border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    /* ── Placeholder cards ───────────────────────────── */
+    .placeholder-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px; }
+    .placeholder-card {
+      background: var(--white);
+      border: 2px dashed var(--border);
+      border-radius: var(--radius);
+      padding: 40px 36px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; gap: 12px; min-height: 200px;
+    }
+    .placeholder-icon {
+      width: 44px; height: 44px; background: var(--indigo-l);
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      font-size: 22px; margin-bottom: 4px;
+    }
+    .placeholder-title { font-size: 15px; font-weight: 600; color: var(--navy); }
+    .placeholder-sub { font-size: 13px; color: var(--light); }
+
+    /* ── About ───────────────────────────────────────── */
+    .about-bg { background: var(--white); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    .about-text h2 { font-size: 28px; font-weight: 700; color: var(--navy); margin-bottom: 16px; letter-spacing: -.02em; }
+    .about-text p { font-size: 15px; color: var(--slate); line-height: 1.8; margin-bottom: 16px; }
+    .about-skills { }
+    .skills-label { font-size: 12px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--light); margin-bottom: 16px; }
+    .skills-group { margin-bottom: 24px; }
+    .skills-group-name { font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 10px; }
+    .skills-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skills-chip {
+      font-size: 13px; font-weight: 500;
+      background: var(--bg); border: 1px solid var(--border);
+      color: var(--slate); padding: 5px 12px; border-radius: 8px;
+    }
+
+    /* ── Experience ──────────────────────────────────── */
+    .experience-list { display: flex; flex-direction: column; margin-top: 40px; }
+    .exp-item { padding: 28px 0; border-bottom: 1px solid var(--border); }
+    .exp-item:first-child { padding-top: 0; }
+    .exp-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .exp-header { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 4px; }
+    .exp-title { font-size: 15px; font-weight: 700; color: var(--navy); }
+    .exp-date { font-size: 13px; color: var(--light); font-weight: 500; white-space: nowrap; flex-shrink: 0; }
+    .exp-company { font-size: 13px; font-weight: 600; color: var(--indigo); margin-bottom: 12px; text-transform: uppercase; letter-spacing: .04em; }
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .exp-bullets li { font-size: 14px; color: var(--slate); line-height: 1.6; padding-left: 18px; position: relative; }
+    .exp-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--indigo); font-weight: 600; }
+
+    /* ── Contact ─────────────────────────────────────── */
+    .contact-bg {
+      background: linear-gradient(135deg, var(--navy) 0%, #1e2a4a 100%);
+      color: white;
+      text-align: center;
+      padding: 80px 32px;
+    }
+    .contact-bg .section-label { color: #818cf8; }
+    .contact-bg .section-title { color: white; margin-bottom: 12px; }
+    .contact-bg p { color: #94a3b8; max-width: 500px; margin: 0 auto 36px; font-size: 15px; line-height: 1.7; }
+    .contact-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: white; color: var(--navy);
+      font-weight: 600; font-size: 14px;
+      padding: 13px 28px; border-radius: 8px;
+      text-decoration: none;
+      transition: background .2s, transform .15s;
+    }
+    .contact-btn:hover { background: #f1f5f9; transform: translateY(-1px); }
+
+    /* ── Footer ──────────────────────────────────────── */
+    footer {
+      text-align: center; padding: 28px 32px;
+      background: var(--navy); color: #475569;
+      font-size: 13px; border-top: 1px solid #1e293b;
+    }
+
+    /* ── Responsive ──────────────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero-inner { flex-direction: column; gap: 36px; }
+      .hero-photo { width: 100%; height: 280px; }
+      .project-card-body { grid-template-columns: 1fr; }
+      .project-card-header { flex-direction: column; }
+      .placeholder-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; }
+      .stats-inner { grid-template-columns: 1fr 1fr; }
+      .stat + .stat { border-left: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ─────────────────────────────────────── -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">David Moss &nbsp;·&nbsp; <span>New York City</span></a>
+    <ul class="nav-links">
+      <li class="nav-dropdown">
+        <a href="#projects">Projects</a>
+        <div class="nav-dropdown-menu">
+          <div class="nav-dropdown-menu-inner">
+            <a href="#projects" data-nav-tab="ai">AI &amp; Automation</a>
+            <a href="#projects" data-nav-tab="erp">Enterprise Implementation</a>
+          </div>
+        </div>
+      </li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── Hero ───────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-photo-wrap">
+      <img class="hero-photo" src="profile.jpg" alt="D. Moss">
+    </div>
+    <div class="hero-content">
+      <h1>Bridging the gap between<br>what <span>enterprise software</span> does<br>and what <span>client teams</span> need.</h1>
+      <p>Close to a decade of delivering enterprise products to commercial, healthcare, and non-profit clients has shown me exactly where enterprise tools fail the people using them. I design efficient solutions using AI — built around how finance teams actually think — closing that gap.</p>
+      <a class="hero-cta" href="#projects">View Projects ↓</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Stats ──────────────────────────────────────────── -->
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stat">
+      <div class="stat-value">5</div>
+      <div class="stat-label">Persona-based AI applications shipped</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">11+</div>
+      <div class="stat-label">ERP Implementation &amp; Transformation Projects</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">9+</div>
+      <div class="stat-label">Years bridging finance operations and enterprise technology</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">10,000+</div>
+      <div class="stat-label">Employees impacted across all engagements</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Projects ───────────────────────────────────────── -->
+<section class="section" id="projects">
+  <div class="section-inner">
+<h2 class="section-title" style="text-align:center;">Featured Projects</h2>
+
+    <div style="text-align:center;">
+    <div class="project-tabs">
+      <button class="project-tab active" data-tab="ai">AI & Automation</button>
+      <button class="project-tab" data-tab="erp">Enterprise Implementation</button>
+    </div>
+    </div>
+    <p id="projects-sub" class="section-sub" style="text-align:center; margin:0 auto 36px;">Tools built at the intersection of AI and enterprise finance — addressing some of the largest operational and implementation-based inefficiencies.</p>
+
+    <div class="projects-grid">
+
+      <!-- ── Project 1: Workday AI Analyzer ── -->
+      <article class="project-card" data-category="ai">
+        <div class="project-card-header">
+          <div class="project-meta">
+            <div class="project-number">Project 01 &nbsp;·&nbsp; Finance Intelligence</div>
+            <h3 class="project-card-headline">Preparing for a board meeting used to mean <span>days of manual effort</span>. Now it means asking <span>a question</span>.</h3>
+            <div class="project-persona"><span style="color:#818cf8; font-weight:700;">Persona</span> &nbsp;·&nbsp; <span style="color:#ffffff;">Chief Financial Officer</span></div>
+            <p class="project-card-lede">The answers finance executives need already exist — they're just buried behind rigid systems. I designed an AI-powered workspace that removes the reporting layer entirely — live answers, dynamic visualisations, and executive-ready outputs with talking points from a single conversation.</p>
+            <div class="header-metrics">
+              <div class="header-metric">
+                <span class="header-metric-value">2+ hrs</span>
+                <span class="header-metric-label">Saved per analysis session</span>
+              </div>
+              <div class="header-metric">
+                <span class="header-metric-value">&lt; 30s</span>
+                <span class="header-metric-label">Live data fetch from Workday</span>
+              </div>
+              <div class="header-metric">
+                <span class="header-metric-value">0</span>
+                <span class="header-metric-label">Manual exports needed</span>
+              </div>
+              <div class="header-metric">
+                <span class="header-metric-value">5+</span>
+                <span class="header-metric-label">Output formats generated automatically</span>
+              </div>
+            </div>
+          </div>
+          <div class="toggle-btn"><span>View Details</span><span class="toggle-icon">▾</span></div>
+        </div>
+
+        <div class="project-card-content">
+        <div class="project-card-body">
+          <div style="display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <div class="block-label">The Problem</div>
+              <p class="block-text">A CFO preparing for a board meeting shouldn't need analysts and days of effort to answer basic questions — but Workday's rigid reporting layer makes that the reality. The system is built around its own logic, not around how finance professionals think.</p>
+            </div>
+            <div>
+              <div class="block-label">The Solution</div>
+              <p class="block-text">A unified workspace where users ask questions in plain English and get immediate answers from live Workday data. Charts, income statements, and trial balances generate on demand. One click produces a formatted PowerPoint or Excel export — no manual formatting required.</p>
+            </div>
+            <div>
+              <div class="block-label">Design Decisions</div>
+              <p class="block-text">Finance professionals form questions, not queries — so the interface matches that. Output formats mirror artefacts teams already produce, fitting existing workflows. AI runs locally so financial data never leaves the machine, which is non-negotiable in a client context.</p>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column;">
+            <div class="block-label">Screenshots</div>
+            <div class="proj-slideshow" id="proj1-slideshow" onclick="openLightbox(this)">
+              <img class="slide active" src="proj1-screen1.png" alt="Screenshot 1" data-caption="Natural language queries across live journal data — no manual reports required">
+              <img class="slide" src="proj1-screen2.png" alt="Screenshot 2" data-caption="AI-generated executive dashboard with real-time financial summaries">
+              <img class="slide" src="proj1-screen3.png" alt="Screenshot 3" data-caption="Board-ready PowerPoint slides generated automatically from a single conversation">
+              <div class="slideshow-dots">
+                <span class="slideshow-dot active"></span>
+                <span class="slideshow-dot"></span>
+                <span class="slideshow-dot"></span>
+              </div>
+              <button class="slideshow-expand-btn" onclick="event.stopPropagation(); openLightbox(this.closest('.proj-slideshow'))">⤢ Expand</button>
+            </div>
+            <div class="block-label">Key Capabilities</div>
+            <ul class="features-list">
+              <li>Conversational AI interface — plain-English questions answered from live Workday journal data</li>
+              <li>Dynamic charts — bar, line, pie, and doughnut visualisations generated automatically</li>
+              <li>Income statement &amp; trial balance views assembled on demand</li>
+              <li>One-click PowerPoint executive dashboard and styled Excel export</li>
+              <li>AI-assisted reclass analysis grounded in accounting principles</li>
+            </ul>
+          </div>
+        </div>
+
+        </div><!-- /project-card-content -->
+      </article>
+
+      <!-- ── Project 2: Project Finance Intelligence Dashboard ── -->
+      <article class="project-card collapsed" data-category="ai">
+        <div class="project-card-header">
+          <div class="project-meta">
+            <div class="project-number">Project 02 &nbsp;·&nbsp; Project Finance</div>
+            <h3 class="project-card-headline">A project manager should spend their time <span>making decisions</span> — not <span>searching for the data</span> to make them.</h3>
+            <div class="project-persona"><span style="color:#818cf8; font-weight:700;">Persona</span> &nbsp;·&nbsp; <span style="color:#ffffff;">Project Finance Manager</span></div>
+            <p class="project-card-lede">Project finance teams track budgets, revenue, and deadlines across dozens of active projects — but the systems they work in weren't built to surface the right signals at the right time. I designed an AI-powered project intelligence dashboard that changes that.</p>
+            <div class="header-metrics">
+              <div class="header-metric">
+                <span class="header-metric-value">0</span>
+                <span class="header-metric-label">Manual reports run</span>
+              </div>
+              <div class="header-metric">
+                <span class="header-metric-value">1.5 hrs</span>
+                <span class="header-metric-label">Manual data formatting gone</span>
+              </div>
+              <div class="header-metric">
+                <span class="header-metric-value">Real-time</span>
+                <span class="header-metric-label">Budget vs. actual tracking</span>
+              </div>
+              <div class="header-metric">
+                <span class="header-metric-value">100%</span>
+                <span class="header-metric-label">Project portfolio coverage</span>
+              </div>
+            </div>
+          </div>
+          <div class="toggle-btn"><span>View Details</span><span class="toggle-icon">▾</span></div>
+        </div>
+
+        <div class="project-card-content">
+        <div class="project-card-body">
+          <div style="display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <div class="block-label">The Problem</div>
+              <p class="block-text">Project managers track budgets, deadlines, and revenue across dozens of active projects — but the systems they work in weren't built to surface the right signals at the right time. Getting a simple answer means building custom reports, cross-referencing data sources, and waiting — often until the window to act has already closed.</p>
+            </div>
+            <div>
+              <div class="block-label">The Solution</div>
+              <p class="block-text">An agentic project dashboard that gives finance teams real-time visibility across their full portfolio. Users ask questions in plain English and receive immediate answers from live data — then manage their projects directly, automatically balancing expenses to budgets without leaving the tool.</p>
+            </div>
+            <div>
+              <div class="block-label">Design Decisions</div>
+              <p class="block-text">The dashboard was designed to surface proactive signals, not just answer reactive questions — because in project finance, late information is often useless information. Maintaining a live project directory on startup means answers about closures and budgets are always current, and running AI locally keeps financial data within the client environment.</p>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column;">
+            <div class="block-label">Screenshots</div>
+            <div class="proj-slideshow" id="proj2-slideshow" onclick="openLightbox(this)">
+              <img class="slide active" src="proj2-screen1.png" alt="Screenshot 1" data-caption="Query live financial data using natural language — no manual reports required">
+              <img class="slide" src="proj2-screen4.png" alt="Screenshot 2" data-caption="Real-time visibility into project health and financials">
+              <img class="slide" src="proj2-screen3.png" alt="Screenshot 3" data-caption="Automated recommendations to surface and remediate issues before they escalate">
+              <img class="slide" src="proj2-screen2.png" alt="Screenshot 4" data-caption="Integrated with ERP to post reclasses directly to the ledger">
+              <div class="slideshow-dots">
+                <span class="slideshow-dot active"></span>
+                <span class="slideshow-dot"></span>
+                <span class="slideshow-dot"></span>
+                <span class="slideshow-dot"></span>
+              </div>
+              <button class="slideshow-expand-btn" onclick="event.stopPropagation(); openLightbox(this.closest('.proj-slideshow'))">⤢ Expand</button>
+            </div>
+            <div class="block-label">Key Capabilities</div>
+            <ul class="features-list">
+              <li>AI chat interface for plain-English questions about project status, budgets, and closures</li>
+              <li>Live project directory — IDs, names, end dates, status, expense and revenue totals</li>
+              <li>Automated expense reclass functionality to prevent overspend relative to project budget</li>
+              <li>Proactive closure visibility — identifies projects closing soon and flags unrecorded revenue</li>
+            </ul>
+          </div>
+        </div>
+
+        </div><!-- /project-card-content -->
+      </article>
+
+      <!-- ── Project 3: Expenses Implementation Toolkit ── -->
+      <article class="project-card collapsed" data-category="ai">
+        <div class="project-card-header">
+          <div class="project-meta">
+            <div class="project-number">Project 03 &nbsp;·&nbsp; Implementation Delivery</div>
+            <h3 class="project-card-headline">Every Workday implementation generates the same <span>manual artifacts</span>. I designed a tool to <span>generate them automatically</span>.</h3>
+            <div class="project-persona"><span style="color:#818cf8; font-weight:700;">Persona</span> &nbsp;·&nbsp; <span style="color:#ffffff;">Workday Implementation Consultant</span></div>
+            <p class="project-card-lede">Every Workday Expenses implementation generates the same set of artifacts — SOW analysis, configuration workbooks, test scripts, questionnaires. I designed an AI-powered toolkit that generates all of them automatically, from the same data.</p>
+            <div class="header-metrics">
+              <div class="header-metric">
+                <span class="header-metric-value">40+</span>
+                <span class="header-metric-label">Configuration items covered</span>
+              </div>
+              <div class="header-metric">
+                <span class="header-metric-value">0</span>
+                <span class="header-metric-label">Manual test scripts written</span>
+              </div>
+              <div class="header-metric">
+                <span class="header-metric-value">3</span>
+                <span class="header-metric-label">Implementation phases in one tool</span>
+              </div>
+              <div class="header-metric">
+                <span class="header-metric-value">70+</span>
+                <span class="header-metric-label">E2E test scripts generated</span>
+              </div>
+            </div>
+          </div>
+          <div class="toggle-btn"><span>View Details</span><span class="toggle-icon">▾</span></div>
+        </div>
+
+        <div class="project-card-content">
+        <div class="project-card-body">
+          <div style="display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <div class="block-label">The Problem</div>
+              <p class="block-text">Implementation consultants spend a significant portion of every engagement manually producing the same artifacts — SOW analysis, configuration workbooks, E2E test scripts — before meaningful delivery work can begin. It's slow, repetitive, and error-prone.</p>
+            </div>
+            <div>
+              <div class="block-label">The Solution</div>
+              <p class="block-text">An AI-powered toolkit that guides consultants through Discovery, Architecture, and Testing from one interface. Upload a SOW and scope is extracted automatically. Configure items and the tool generates workbooks, questionnaires, and E2E test scripts tailored to the actual values entered — not generic templates.</p>
+            </div>
+            <div>
+              <div class="block-label">Design Decisions</div>
+              <p class="block-text">The three-tab structure mirrors the standard implementation methodology so consultants work within a familiar framework. Artifacts reference actual configured values — production-ready, not starting points. Everything runs locally so client data never leaves the engagement environment.</p>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column;">
+            <div class="block-label">Screenshots</div>
+            <div class="proj-slideshow" id="proj3-slideshow" onclick="openLightbox(this)">
+              <img class="slide active" src="proj3-screen1.png" alt="Screenshot 1" data-caption="AI-extracted scope from SOW — in-scope items, exclusions, and assumptions in seconds">
+              <img class="slide" src="proj3-screen2.png" alt="Screenshot 2" data-caption="Configuration workbook auto-populated from live data entered across 40+ configuration items">
+              <img class="slide" src="proj3-screen3.png" alt="Screenshot 3" data-caption="Business Process Designer — drag-and-drop swimlane builder for every in-scope process">
+              <img class="slide" src="proj3-screen4.png" alt="Screenshot 4" data-caption="AI-generated E2E test scenarios built from actual configured values — not generic templates">
+              <div class="slideshow-dots">
+                <span class="slideshow-dot active"></span>
+                <span class="slideshow-dot"></span>
+                <span class="slideshow-dot"></span>
+                <span class="slideshow-dot"></span>
+              </div>
+              <button class="slideshow-expand-btn" onclick="event.stopPropagation(); openLightbox(this.closest('.proj-slideshow'))">&#10562; Expand</button>
+            </div>
+            <div class="block-label">Key Capabilities</div>
+            <ul class="features-list">
+              <li>AI-powered SOW analysis — automatically extracts in-scope items, out-of-scope items, data conversion needs, and key assumptions</li>
+              <li>40+ configuration items library and 6 business processes across three worksets with contextual AI guidance for each field</li>
+              <li>Automated E2E test script generation based on configuration and business processes already stored in the tool</li>
+              <li>Configuration workbook export — auto-populated Excel templates with intelligent column and sheet mapping</li>
+            </ul>
+          </div>
+        </div>
+
+        </div><!-- /project-card-content -->
+      </article>
+
+      <!-- ── Project 4: International Conservation Nonprofit ── -->
+      <article class="project-card" data-category="erp">
+        <div class="project-card-header">
+          <div class="project-meta">
+            <div class="project-number">Project 04 &nbsp;·&nbsp; Multi-System Implementation</div>
+            <h3 class="project-card-headline">From budgeting to contracts — a unified <span>multi-system implementation</span> for a <span>global conservation organization</span>.</h3>
+            <div class="project-persona"><span style="color:#818cf8; font-weight:700;">Role</span> &nbsp;·&nbsp; <span style="color:#ffffff;">Finance Lead</span> &nbsp;&nbsp;&nbsp; <span style="color:#818cf8; font-weight:700;">Client</span> &nbsp;·&nbsp; <span style="color:#ffffff;">International Conservation Nonprofit</span></div>
+            <p class="project-card-lede">Served as Finance Lead across a three-platform implementation — connecting a global ERP, budgeting system, and contracts platform into a unified financial operating model for a conservation organization operating across multiple countries.</p>
+            <div class="header-metrics">
+              <div class="header-metric">
+                <span class="header-metric-value">41+</span>
+                <span class="header-metric-label">Countries in scope</span>
+              </div>
+              <div class="header-metric">
+                <span class="header-metric-value">5,500</span>
+                <span class="header-metric-label">Employees in scope</span>
+              </div>
+              <div class="header-metric">
+                <span class="header-metric-value">10+</span>
+                <span class="header-metric-label">Team members led</span>
+              </div>
+            </div>
+          </div>
+          <div class="toggle-btn"><span>View Details</span><span class="toggle-icon">▾</span></div>
+        </div>
+        <div class="project-card-content">
+          <div class="project-card-body">
+            <div style="display:flex; flex-direction:column; gap:24px;">
+              <div>
+                <div class="block-label">The Challenge</div>
+                <p class="block-text">A global conservation organization with 5,500 employees across 41+ countries struggled to connect funding sources to the programmatic and project-level metrics that mattered to leadership and donors — with financial, budgeting, and contracts data spread across disconnected systems with no unified view.</p>
+              </div>
+              <div>
+                <div class="block-label">The Solution</div>
+                <p class="block-text">Led a team of 10+ to design and deliver a fully integrated financial solution — consolidating six legacy systems into three platforms and creating a unified view of the organization's financials, budgeting, and procurement operations for the first time.</p>
+              </div>
+            </div>
+            <div style="display:flex; flex-direction:column;">
+              <div class="block-label">Key Contributions</div>
+              <ul class="features-list">
+                <li>Led discovery sessions across global teams to document current state operations and identify consolidation opportunities</li>
+                <li>Leveraged agentic AI tools to accelerate data formatting and document creation, delivering faster outputs to the client</li>
+                <li>Designed a cross-platform solution connecting funding sources to programmatic and project-level outcomes</li>
+                <li>Managed a team of 10+ across finance, budgeting, and procurement workstreams from discovery through go-live</li>
+                <li>Designed and oversaw training for hundreds of employees across instructor-led sessions, job aids, and reference documentation</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── Project 5: Public Policy Institution ── -->
+      <article class="project-card collapsed" data-category="erp">
+        <div class="project-card-header">
+          <div class="project-meta">
+            <div class="project-number">Project 05 &nbsp;·&nbsp; Workday Implementation</div>
+            <h3 class="project-card-headline">Six finance workstreams. One implementation. A public policy institution's entire <span>financial infrastructure</span> <span>transformed</span>.</h3>
+            <div class="project-persona"><span style="color:#818cf8; font-weight:700;">Role</span> &nbsp;·&nbsp; <span style="color:#ffffff;">Finance Lead</span> &nbsp;&nbsp;&nbsp; <span style="color:#818cf8; font-weight:700;">Client</span> &nbsp;·&nbsp; <span style="color:#ffffff;">Public Policy Institution</span></div>
+            <p class="project-card-lede">Led a cross-functional team to implement Workday Financials from Discovery to Go-Live — guiding the institution through complex financial design decisions, data migration, and stakeholder alignment across a highly structured, compliance-driven environment.</p>
+            <div class="header-metrics">
+              <div class="header-metric">
+                <span class="header-metric-value">6</span>
+                <span class="header-metric-label">Finance workstreams led</span>
+              </div>
+              <div class="header-metric">
+                <span class="header-metric-value">5</span>
+                <span class="header-metric-label">Team members led</span>
+              </div>
+              <div class="header-metric">
+                <span class="header-metric-value">30+</span>
+                <span class="header-metric-label">Integrations functionally designed</span>
+              </div>
+            </div>
+          </div>
+          <div class="toggle-btn"><span>View Details</span><span class="toggle-icon">▾</span></div>
+        </div>
+        <div class="project-card-content">
+          <div class="project-card-body">
+            <div style="display:flex; flex-direction:column; gap:24px;">
+              <div>
+                <div class="block-label">The Challenge</div>
+                <p class="block-text">Public policy institutions operate with highly structured financial environments — grants, endowments, and restricted funds each carrying distinct compliance obligations. The challenge was redesigning how the institution's financial structure would be represented in Workday without losing anything in translation from their legacy chart of accounts.</p>
+              </div>
+              <div>
+                <div class="block-label">The Solution</div>
+                <p class="block-text">Redesigned the institution's end-to-end financial operations — mapping grant management, fund accounting, and budget tracking processes into Workday from the ground up. Ensured restricted fund compliance and reporting continuity were preserved across every business process, from journal entry through period-end close.</p>
+              </div>
+            </div>
+            <div style="display:flex; flex-direction:column;">
+              <div class="block-label">Key Contributions</div>
+              <ul class="features-list">
+                <li>Led discovery sessions gathering stakeholder input and capturing current state pain points</li>
+                <li>Balanced financial reporting needs against system constraints when converting and designing the client's chart of accounts</li>
+                <li>Led design sessions to configure the environment based on client feedback and requirements</li>
+                <li>Facilitated testing with the client and addressed issues raised during the testing cycle</li>
+                <li>Served as the primary Finance voice across cross-functional workstream discussions and executive communications</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── Project 6: International Nonprofit ── -->
+      <article class="project-card collapsed" data-category="erp">
+        <div class="project-card-header">
+          <div class="project-meta">
+            <div class="project-number">Project 06 &nbsp;·&nbsp; Workday Implementation</div>
+            <h3 class="project-card-headline">Requisition to Invoice. Three countries. One NGO's <span>procurement infrastructure</span> <span>redesigned</span>.</h3>
+            <div class="project-persona"><span style="color:#818cf8; font-weight:700;">Role</span> &nbsp;·&nbsp; <span style="color:#ffffff;">Finance & Procurement Lead</span> &nbsp;&nbsp;&nbsp; <span style="color:#818cf8; font-weight:700;">Client</span> &nbsp;·&nbsp; <span style="color:#ffffff;">International Human Rights NGO</span></div>
+            <p class="project-card-lede">Led six workstreams on a Workday Financials implementation for an international NGO — designing and delivering a full Requisition → Purchase Order → Invoice process from discovery to go-live, while overseeing core financial areas including Grants, Assets, and Payroll across three countries.</p>
+            <div class="header-metrics">
+              <div class="header-metric">
+                <span class="header-metric-value">3</span>
+                <span class="header-metric-label">Countries in scope</span>
+              </div>
+              <div class="header-metric">
+                <span class="header-metric-value">1,500</span>
+                <span class="header-metric-label">Employees in scope</span>
+              </div>
+              <div class="header-metric">
+                <span class="header-metric-value">3</span>
+                <span class="header-metric-label">Team members led</span>
+              </div>
+            </div>
+          </div>
+          <div class="toggle-btn"><span>View Details</span><span class="toggle-icon">▾</span></div>
+        </div>
+        <div class="project-card-content">
+          <div class="project-card-body">
+            <div style="display:flex; flex-direction:column; gap:24px;">
+              <div>
+                <div class="block-label">The Challenge</div>
+                <p class="block-text">A human rights NGO with 1,500 employees across three countries had no shared processes for procurement, grants, or financial reporting. Each office operated independently — with distinct audit standards, approval structures, and compliance obligations — making a unified implementation both critical and complex.</p>
+              </div>
+              <div>
+                <div class="block-label">The Solution</div>
+                <p class="block-text">Designed and delivered a full Requisition → Purchase Order → Invoice lifecycle with approval workflows built to each country's audit and compliance requirements. Oversaw Grants, Assets, and Payroll workstreams in parallel — creating a consistent financial operating model for 1,500 employees across all three offices.</p>
+              </div>
+            </div>
+            <div style="display:flex; flex-direction:column;">
+              <div class="block-label">Key Contributions</div>
+              <ul class="features-list">
+                <li>Designed the end-to-end procurement process from purchase request through invoice approval, standardised across three countries</li>
+                <li>Gathered per-country audit and compliance requirements to inform procurement approval workflows and FDM design</li>
+                <li>Led design and delivery of Grants, Assets, and Payroll workstreams alongside the core procurement build</li>
+                <li>Managed a team of three across six workstreams from discovery through go-live</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div><!-- /projects-grid -->
+
+
+  </div>
+</section>
+
+<!-- ── About ───────────────────────────────────────────── -->
+<section class="section about-bg" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-label">About</div>
+        <h2>Designing experiences that turn enterprise complexity into clarity</h2>
+        <p>
+          With close to a decade of delivering enterprise solutions across commercial, healthcare, and
+          non-profit sectors, I've led cross-functional teams of 12+ and seen first-hand how operational
+          efficiency is lost when tools aren't built around how people actually work.
+        </p>
+        <p>
+          That gap became a design practice. I build more efficient solutions that replace fragmented,
+          manual workflows — from conversational AI interfaces for financial data to operational dashboards
+          built around distinct stakeholder needs. Every decision starts with the user's mental model,
+          not the system's constraints.
+        </p>
+        <p>
+          As Agentic AI technology becomes more commonplace, I'm looking to grow into more senior design
+          roles at the intersection of enterprise AI and finance transformation — where domain depth,
+          cross-functional leadership, and hands-on experience shipping intelligent tools drive real
+          operational change.
+        </p>
+        <a class="hero-cta" href="resume.pdf" download="David_Moss_Resume.pdf" style="margin-top: 24px;">Download Resume ↓</a>
+      </div>
+      <div class="about-skills">
+        <div class="skills-label">Skills &amp; Experience</div>
+
+        <div class="skills-group">
+          <div class="skills-group-name">UX &amp; Product Design</div>
+          <div class="skills-chips">
+            <span class="skills-chip">User-Centred Design</span>
+            <span class="skills-chip">Agentic Experience Design</span>
+            <span class="skills-chip">Stakeholder Alignment</span>
+            <span class="skills-chip">Product Lead</span>
+          </div>
+        </div>
+
+        <div class="skills-group">
+          <div class="skills-group-name">AI &amp; Intelligent Systems</div>
+          <div class="skills-chips">
+            <span class="skills-chip">Agentic Workflows</span>
+            <span class="skills-chip">AI-Integrated Product Features</span>
+            <span class="skills-chip">Claude AI</span>
+            <span class="skills-chip">ChatGPT</span>
+            <span class="skills-chip">Gemini</span>
+          </div>
+        </div>
+
+        <div class="skills-group">
+          <div class="skills-group-name">ERP &amp; Finance Domain</div>
+          <div class="skills-chips">
+            <span class="skills-chip">Finance Transformation</span>
+            <span class="skills-chip">Business Process Design</span>
+            <span class="skills-chip">Go-Live Support</span>
+          </div>
+        </div>
+
+        <div class="skills-group">
+          <div class="skills-group-name">Engineering &amp; Delivery</div>
+          <div class="skills-chips">
+            <span class="skills-chip">Rapid Prototyping</span>
+            <span class="skills-chip">Agile Delivery</span>
+            <span class="skills-chip">Data Visualisation</span>
+          </div>
+        </div>
+
+        <div class="skills-group">
+          <div class="skills-group-name">Education</div>
+          <div class="skills-chips">
+            <span class="skills-chip">B.S. Human Development — Virginia Tech, 2016</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Contact ─────────────────────────────────────────── -->
+<section class="contact-bg" id="contact">
+  <div class="section-label">Get In Touch</div>
+  <h2 class="section-title">Interested in working together?</h2>
+  <p>Whether you're hiring, exploring a collaboration, or want to talk about enterprise AI and finance transformation — I'd love to hear from you.</p>
+  <a class="contact-btn" href="mailto:david.bracken.moss@gmail.com">Email ↗</a>
+  <a class="contact-btn" href="https://www.linkedin.com/in/david-moss-619747139" target="_blank">LinkedIn ↗</a>
+</section>
+
+
+<script>
+  document.querySelectorAll('.project-card-header').forEach(header => {
+    header.addEventListener('click', () => {
+      header.closest('.project-card').classList.toggle('collapsed');
+    });
+  });
+
+  const tabs = document.querySelectorAll('.project-tab');
+  const cards = document.querySelectorAll('.project-card[data-category]');
+  const projectsSub = document.getElementById('projects-sub');
+  const tabSubtext = {
+    ai: "Tools built at the intersection of AI and enterprise finance — addressing some of the largest operational and implementation-based inefficiencies.",
+    erp: "Close to a decade of enterprise ERP delivery across commercial, healthcare, and non-profit sectors — these are the engagements that shaped how I think about design and implementation."
+  };
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const cat = tab.dataset.tab;
+      cards.forEach(card => {
+        card.style.display = card.dataset.category === cat ? '' : 'none';
+      });
+      projectsSub.textContent = tabSubtext[cat];
+    });
+  });
+
+  // Show AI tab by default
+  cards.forEach(card => {
+    if (card.dataset.category !== 'ai') card.style.display = 'none';
+  });
+
+  // Nav dropdown show/hide with delay
+  const navDropdown = document.querySelector('.nav-dropdown');
+  const navMenu = document.querySelector('.nav-dropdown-menu');
+  let hideTimer;
+  navDropdown.addEventListener('mouseenter', () => {
+    clearTimeout(hideTimer);
+    navMenu.style.display = 'block';
+  });
+  navDropdown.addEventListener('mouseleave', () => {
+    hideTimer = setTimeout(() => { navMenu.style.display = 'none'; }, 200);
+  });
+
+  // Nav dropdown tab switching
+  document.querySelectorAll('[data-nav-tab]').forEach(link => {
+    link.addEventListener('click', () => {
+      const cat = link.dataset.navTab;
+      tabs.forEach(t => t.classList.remove('active'));
+      document.querySelector(`.project-tab[data-tab="${cat}"]`).classList.add('active');
+      cards.forEach(card => {
+        card.style.display = card.dataset.category === cat ? '' : 'none';
+      });
+      projectsSub.textContent = tabSubtext[cat];
+    });
+  });
+
+  // ── Slideshow ──
+  (function() {
+    document.querySelectorAll('.proj-slideshow').forEach(function(ss) {
+      var slides = ss.querySelectorAll('.slide');
+      var dots   = ss.querySelectorAll('.slideshow-dot');
+      var cur = 0;
+      function goTo(n) {
+        slides[cur].classList.remove('active'); dots[cur].classList.remove('active');
+        cur = (n + slides.length) % slides.length;
+        slides[cur].classList.add('active'); dots[cur].classList.add('active');
+      }
+      dots.forEach(function(dot, i) {
+        dot.addEventListener('click', function(e) { e.stopPropagation(); goTo(i); });
+      });
+      setInterval(function() { goTo(cur + 1); }, 5500);
+    });
+  })();
+
+  var _lbSS = null, _lbIdx = 0;
+
+  function openLightbox(el) {
+    _lbSS = el;
+    var slides = el.querySelectorAll('.slide');
+    _lbIdx = Array.from(slides).findIndex(function(s){ return s.classList.contains('active'); });
+    if (_lbIdx < 0) _lbIdx = 0;
+    var cardContent = el.closest('.project-card-content');
+    if (!cardContent) return;
+    var overlay = cardContent.querySelector('.card-img-overlay');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.className = 'card-img-overlay';
+      var dotsHtml = '<div class="lightbox-dots">';
+      for (var i = 0; i < slides.length; i++) dotsHtml += '<span class="lightbox-dot" onclick="event.stopPropagation();lbGoTo('+i+')"></span>';
+      dotsHtml += '</div>';
+      overlay.innerHTML = '<button class="card-img-close" onclick="closeLightbox(this)">✕</button><img src="" alt="Screenshot" onclick="lbAdvance()"><div class="lightbox-caption"></div>' + dotsHtml;
+      cardContent.appendChild(overlay);
+    }
+    lbSync(overlay);
+    overlay.style.display = 'flex';
+  }
+
+  function lbSync(overlay) {
+    var slides = _lbSS.querySelectorAll('.slide');
+    var activeSlide = slides[_lbIdx];
+    overlay.querySelector('img').src = activeSlide.src;
+    var cap = overlay.querySelector('.lightbox-caption');
+    if (cap) cap.textContent = activeSlide.getAttribute('data-caption') || '';
+    overlay.querySelectorAll('.lightbox-dot').forEach(function(d,i){ d.classList.toggle('active', i===_lbIdx); });
+    slides.forEach(function(s,i){ s.classList.toggle('active', i===_lbIdx); });
+    _lbSS.querySelectorAll('.slideshow-dot').forEach(function(d,i){ d.classList.toggle('active', i===_lbIdx); });
+  }
+
+  function lbAdvance() {
+    if (!_lbSS) return;
+    _lbIdx = (_lbIdx + 1) % _lbSS.querySelectorAll('.slide').length;
+    lbSync(_lbSS.closest('.project-card-content').querySelector('.card-img-overlay'));
+  }
+
+  function lbGoTo(idx) {
+    if (!_lbSS) return;
+    _lbIdx = idx;
+    lbSync(_lbSS.closest('.project-card-content').querySelector('.card-img-overlay'));
+  }
+
+  function closeLightbox(btn) {
+    btn.closest('.card-img-overlay').style.display = 'none';
+    _lbSS = null;
+  }
+</script>
+</body>
+</html>
