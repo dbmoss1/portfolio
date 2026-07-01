@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>David Moss — Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #e2e8f0;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .resume {
+      width: 816px;
+      height: 1056px;
+      margin: 32px auto;
+      display: flex;
+      box-shadow: 0 8px 40px rgba(0,0,0,.15);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    /* ── Sidebar ─────────────────────────────────────── */
+    .sidebar {
+      width: 240px;
+      flex-shrink: 0;
+      background: linear-gradient(160deg, #0f172a 0%, #1e2a4a 100%);
+      padding: 20px 26px 28px;
+      display: flex;
+      flex-direction: column;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .sidebar-photo {
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      object-fit: cover; object-position: center top;
+      border: 3px solid rgba(255,255,255,.18);
+      display: block;
+      margin: 0 auto 14px;
+      flex-shrink: 0;
+    }
+
+    .sidebar-name {
+      font-size: 22px; font-weight: 700; color: #ffffff;
+      text-align: center; letter-spacing: -.01em; margin-bottom: 6px;
+    }
+    .sidebar-title {
+      font-size: 12px; font-weight: 600; color: #818cf8;
+      text-align: center; letter-spacing: .02em;
+      line-height: 1.6; margin-bottom: 24px;
+    }
+    .sidebar-divider {
+      height: 1px; background: rgba(255,255,255,.1);
+      margin-bottom: 10px; flex-shrink: 0;
+    }
+
+    .sidebar-block { margin-bottom: 14px; }
+    .sidebar-block:last-child { margin-bottom: 0; }
+
+    .sidebar-label {
+      font-size: 14px; font-weight: 700;
+      letter-spacing: .01em; text-transform: uppercase;
+      color: #818cf8; margin-bottom: 8px;
+    }
+
+    .sidebar-contact-item {
+      font-size: 11.5px; color: #94a3b8;
+      margin-bottom: 6px; line-height: 1.45;
+      word-break: break-all;
+    }
+    .sidebar-contact-item:last-child { margin-bottom: 0; }
+    .sidebar-contact-item a { color: #818cf8; text-decoration: none; }
+    .sidebar-contact-links { display: flex; gap: 14px; }
+
+    .sidebar-profile {
+      font-size: 11.5px; color: #94a3b8; line-height: 1.6;
+    }
+
+    .sidebar-skill {
+      font-size: 11px; color: #94a3b8;
+      padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,.07);
+      line-height: 1.4;
+    }
+    .sidebar-skill:first-child { border-top: 1px solid rgba(255,255,255,.07); }
+
+    /* ── Main ────────────────────────────────────────── */
+    .main {
+      flex: 1; padding: 28px 32px 28px;
+      background: white;
+      display: flex; flex-direction: column;
+      justify-content: center;
+    }
+
+    .section-label {
+      font-size: 17px; font-weight: 700;
+      letter-spacing: .01em; text-transform: uppercase;
+      color: #4f46e5;
+      padding-bottom: 7px;
+      border-bottom: 1.5px solid #eef2ff;
+      margin-bottom: 14px;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+
+    .exp-section { display: flex; flex-direction: column; }
+    .exp-list { display: flex; flex-direction: column; gap: 18px; }
+
+    .exp-item {
+      padding-bottom: 14px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .exp-item:last-child { padding-bottom: 0; border-bottom: none; }
+
+    /* ── Company group (Accenture) ── */
+    .company-group { }
+    .company-group-header {
+      display: flex; justify-content: space-between; align-items: baseline; gap: 8px;
+      margin-bottom: 11px;
+    }
+    .company-group-name {
+      font-size: 12px; font-weight: 700; color: #4f46e5;
+      text-transform: uppercase; letter-spacing: .06em;
+    }
+    .company-group-tenure {
+      font-size: 12px; color: #94a3b8; font-weight: 500;
+      white-space: nowrap; flex-shrink: 0;
+    }
+
+    /* Timeline */
+    .role-list {
+      position: relative;
+      display: flex; flex-direction: column; gap: 12px;
+      padding-left: 20px;
+    }
+    .role-list::before {
+      content: '';
+      position: absolute;
+      left: 4px; top: 10px; bottom: 10px;
+      width: 1.5px;
+      background: #c7d2fe;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+    .role-item { position: relative; }
+    .role-item::before {
+      content: '';
+      position: absolute;
+      left: -19px; top: 4px;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #4f46e5;
+      box-shadow: 0 0 0 2px #ffffff, 0 0 0 3.5px #c7d2fe;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+
+    .exp-row {
+      display: flex; justify-content: space-between;
+      align-items: baseline; gap: 8px; margin-bottom: 2px;
+    }
+    .exp-title { font-size: 14px; font-weight: 700; color: #0f172a; }
+    .exp-date  { font-size: 12px; color: #94a3b8; font-weight: 500; white-space: nowrap; flex-shrink: 0; }
+    .exp-company {
+      font-size: 12px; font-weight: 700; color: #4f46e5;
+      text-transform: uppercase; letter-spacing: .06em; margin-bottom: 9px;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+    .exp-bullets li {
+      font-size: 12px; color: #334155; line-height: 1.65;
+      padding-left: 14px; position: relative;
+    }
+    .exp-bullets li::before {
+      content: '–'; position: absolute; left: 0;
+      color: #4f46e5; font-weight: 700;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+
+    .edu-section { margin-top: 34px; }
+    .edu-row { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+    .edu-degree { font-size: 13px; font-weight: 700; color: #0f172a; }
+    .edu-date   { font-size: 12px; color: #94a3b8; font-weight: 500; }
+    .edu-school {
+      font-size: 12px; font-weight: 700; color: #4f46e5;
+      text-transform: uppercase; letter-spacing: .06em; margin-top: 3px;
+    }
+
+    /* ── Print ──────────────────────────────────────── */
+    @media print {
+      body { background: white; }
+      .resume { margin: 0; width: 100%; height: 100vh; box-shadow: none; border-radius: 0; }
+      .sidebar {
+        background: linear-gradient(160deg, #0f172a 0%, #1e2a4a 100%) !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      @page { size: letter portrait; margin: 0; }
+    }
+  </style>
+</head>
+<body>
+<div class="resume">
+
+  <!-- ── Sidebar ── -->
+  <div class="sidebar">
+    <img class="sidebar-photo" src="profile.jpg" alt="David Moss">
+    <div class="sidebar-name">David Moss</div>
+    <div class="sidebar-title">AI Product Lead &amp;<br>Enterprise Solution Architect</div>
+    <div class="sidebar-divider"></div>
+
+    <div class="sidebar-block">
+      <div class="sidebar-label">Contact</div>
+      <div class="sidebar-contact-item">david.bracken.moss@gmail.com</div>
+      <div class="sidebar-contact-item">(484) 885-5187</div>
+      <div class="sidebar-contact-item">New York City, NY</div>
+      <div class="sidebar-contact-links">
+        <div class="sidebar-contact-item"><a href="https://dbmoss1.github.io/portfolio/">Portfolio ↗</a></div>
+        <div class="sidebar-contact-item"><a href="https://www.linkedin.com/in/david-moss-619747139">LinkedIn ↗</a></div>
+      </div>
+    </div>
+
+    <div class="sidebar-block">
+      <div class="sidebar-label">Profile</div>
+      <p class="sidebar-profile">
+        Enterprise AI Product Lead with 9+ years delivering digital transformation for global organizations.
+        Builds and ships persona-based AI applications integrating enterprise systems via public APIs to automate
+        workflows — combining governance, cross-functional leadership, and hands-on product delivery to drive
+        measurable business impact for C-suite stakeholders.
+      </p>
+    </div>
+
+    <div class="sidebar-block">
+      <div class="sidebar-label">Competencies</div>
+      <div class="sidebar-skill">Enterprise AI Strategy</div>
+      <div class="sidebar-skill">Product Roadmapping</div>
+      <div class="sidebar-skill">Governance by Design</div>
+      <div class="sidebar-skill">Agent-Based Automation</div>
+      <div class="sidebar-skill">Claude / Claude Code</div>
+      <div class="sidebar-skill">Google Gemini</div>
+      <div class="sidebar-skill">Power Automate</div>
+      <div class="sidebar-skill">Python &amp; Visual Basic</div>
+      <div class="sidebar-skill">Executive Storytelling</div>
+      <div class="sidebar-skill">ERP / SaaS Leadership</div>
+      <div class="sidebar-skill">Team Leadership</div>
+    </div>
+
+  </div>
+
+  <!-- ── Main ── -->
+  <div class="main">
+
+    <div class="exp-section">
+      <div class="section-label">Experience</div>
+      <div class="exp-list">
+
+        <!-- ── Accenture group ── -->
+        <div class="company-group">
+          <div class="company-group-header">
+            <div class="company-group-name">Accenture</div>
+            <div class="exp-date">Nov 2018 – Present &nbsp;·&nbsp; 7 yrs 8 mos</div>
+          </div>
+          <div class="role-list">
+
+            <div class="role-item">
+              <div class="exp-row">
+                <div class="exp-title">Manager – Product Lead</div>
+                <div class="exp-date">Jun 2025 – Present</div>
+              </div>
+              <ul class="exp-bullets">
+                <li>Develop and deliver 5+ persona-based AI applications — built to client requirements and refined through iterative feedback — integrating with enterprise systems via public APIs to automate business workflows</li>
+                <li>Lead cross-functional teams of 6+ across multiple countries to deliver enterprise AI and digital transformation programs</li>
+                <li>Translate client needs into clear user stories, presenting solutions during the sales cycle to support new business development</li>
+                <li>Serve as primary executive point of contact, communicating AI product direction, risk posture, and milestones to C-suite stakeholders</li>
+              </ul>
+            </div>
+
+            <div class="role-item">
+              <div class="exp-row">
+                <div class="exp-title">Associate Manager – Product Lead</div>
+                <div class="exp-date">Nov 2021 – May 2025</div>
+              </div>
+              <ul class="exp-bullets">
+                <li>Led teams of 5+ through end-to-end delivery to deploy full platform software implementations, enhancements, and functional support</li>
+                <li>Contributed to the design of products across multiple formats, including Excel Macros and Desktop Applications, using Visual Basic and Python</li>
+                <li>Contributed to solution architecture and resource planning for enterprise programs valued at $10M+</li>
+                <li>Delivered executive-level presentations to prospective clients with live solution demonstrations</li>
+              </ul>
+            </div>
+
+            <div class="role-item">
+              <div class="exp-row">
+                <div class="exp-title">Consultant – Product Lead</div>
+                <div class="exp-date">Nov 2019 – Nov 2021</div>
+              </div>
+              <ul class="exp-bullets">
+                <li>Partnered with internal and external stakeholders to develop multi-year roadmaps, ensuring alignment across functional, technical, and governance milestones</li>
+                <li>Drove end-to-end deployment of SaaS-based solutions for global clients across Agile sprint cycles, leveraging JIRA, ServiceNow, and Salesforce</li>
+                <li>Launched product features and iterated enhancements based on user feedback gathered post-deployment</li>
+              </ul>
+            </div>
+
+            <div class="role-item">
+              <div class="exp-row">
+                <div class="exp-title">Senior Analyst – Enterprise Transformation</div>
+                <div class="exp-date">Nov 2018 – Nov 2019</div>
+              </div>
+              <ul class="exp-bullets">
+                <li>Documented and validated enterprise platform requirements; partnered with team leads to design, test, and deploy SaaS solutions</li>
+                <li>Produced technical and functional documentation for end-user training and change management</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── Adventist Healthcare ── -->
+        <div class="exp-item">
+          <div class="exp-row">
+            <div class="exp-title">Finance Specialist</div>
+            <div class="exp-date">Mar 2017 – Nov 2018 &nbsp;·&nbsp; 1 yr 8 mos</div>
+          </div>
+          <div class="exp-company">Adventist Healthcare</div>
+          <ul class="exp-bullets">
+            <li>Managed a $13M portfolio of contracts across the full grant lifecycle</li>
+            <li>Functional Lead and Change Ambassador on a software implementation spanning 15 departments, 50 employees, and 15 consultants</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="edu-section">
+      <div class="section-label">Education</div>
+      <div class="edu-row">
+        <div class="edu-degree">B.S. in Human Development</div>
+        <div class="edu-date">December 2016</div>
+      </div>
+      <div class="edu-school">Virginia Tech &nbsp;·&nbsp; Blacksburg, VA</div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
